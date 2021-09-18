@@ -1,5 +1,5 @@
 /*
-PROBLEM LINK:- https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/
+PROBLEM LINK:- https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
 */
 
 class Solution {
