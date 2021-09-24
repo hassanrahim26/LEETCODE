@@ -5,16 +5,19 @@ PROBLEM LINK:- https://leetcode.com/problems/peak-index-in-a-mountain-array/
 class Solution {
 public:
     int peakIndexInMountainArray(vector<int>& arr) {
-        int low = 0, high = arr.size() - 1;
-        while(low <= high)
+        int start = 0, end = arr.size() - 1;
+        while(start < end)
         {
-            int mid = low + (high - low)/2;
-            
-            if(arr[mid] < arr[mid+1])
-                low = mid + 1;
+            int mid = start + (end - start)/2;
+            if(arr[mid] > arr[mid+1])
+            {
+                end = mid;
+            }
             else
-                high = mid - 1;       
+            {
+                start = mid + 1;
+            }
         }
-        return low;
+        return start;            
     }
 };
