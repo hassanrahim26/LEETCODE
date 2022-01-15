@@ -28,4 +28,17 @@ public:
     }
 };
 ```
-
+* **Python**
+```py
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        def helper(root, depth):
+            if root:
+                if depth == len(ans):
+                    ans.append(root.val)
+                helper(root.right, depth+1)
+                helper(root.left, depth+1)
+        ans = []
+        helper(root, 0)
+        return ans
+```
