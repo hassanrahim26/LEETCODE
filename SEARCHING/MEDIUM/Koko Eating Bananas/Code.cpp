@@ -1,21 +1,28 @@
 /*
-PROBLEM LINK:-
+PROBLEM LINK:- https://leetcode.com/problems/koko-eating-bananas/
 */
 
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = 1000000000;
-        while(l < r)
+        int low = 1, high = INT_MIN;
+        
+        for(auto x: piles)
+            high = max(x, high);
+
+        while(low<high)
         {
-            int m = l + (r-l)/2, total = 0;
-            for(int p : piles)
-                total += (p + m - 1) / m;
-            if(total > h)
-                l = m + 1;
+            int mid = low + (high-low)/2, val = 0;
+            
+            for(auto x: piles)    
+                val += (x + mid - 1)/mid;
+            
+            if(val <= h)
+                high = mid;
             else
-                r = m;
+                low = mid+1;
         }
-        return l;
+        
+        return low;
     }
-};
+};          
