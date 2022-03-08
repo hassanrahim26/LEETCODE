@@ -1,0 +1,33 @@
+## [Add to Array-Form of Integer](https://leetcode.com/problems/add-to-array-form-of-integer/)
+
+* **C++**
+```cpp
+class Solution {
+public:
+    vector<int> addToArrayForm(vector<int>& num, int k) {
+        for(int i = num.size() - 1; i >= 0 && k > 0; i--)
+        {
+            num[i] += k;
+            k = num[i]/10;
+            num[i] %= 10;
+        }
+        while(k > 0)
+        {
+            num.insert(num.begin(), k % 10);
+            k /= 10;
+        }
+        return num;
+    }
+};
+```
+
+* **Python**
+```py
+class Solution:
+    def addToArrayForm(self, num: List[int], k: int) -> List[int]:
+        string = ''
+        for i in num:
+            string += str(i)
+        string = str(int(string)+k)
+        return string
+```
