@@ -5,11 +5,21 @@ PROBLEM LINK:- https://leetcode.com/problems/special-array-with-x-elements-great
 class Solution {
 public:
     int specialArray(vector<int>& nums) {
+        int low = 0, high = nums.size() - 1, mid, x;
         sort(nums.begin(), nums.end());
-        for (int i = 0, ans = 0; ans <= nums.size(); ++ans) {
-            while (i < nums.size() && nums[i] < ans) ++i;
-            if (ans == nums.size() - i) return ans;
+        while(low <= high){
+            mid = low + (high - low)/2;
+            x = nums.size() - mid;
+            
+            if(nums[mid] >= x)
+                if(mid == 0 or nums[mid - 1] < x)
+                    return x;
+                else
+                    high = mid - 1;
+            else
+                low = mid + 1;
         }
+        
         return -1;
     }
 };
