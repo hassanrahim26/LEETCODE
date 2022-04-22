@@ -2,23 +2,19 @@
 
 class Solution:
     def specialArray(self, nums: List[int]) -> int:
-        start = 0
-        end = len(nums)
-        while(start <= end):
-            mid = start + (end - start)//2
-            target = self.count(nums, mid)
-            if target == mid:
-                return mid
-            elif target > mid:
-                start = mid + 1
-            else:
-                end = mid - 1
-        return -1
-    
-    def count(self, nums: List[int], x) -> int:
-        c = 0
-        for i in nums:
-            if i >= x:
-                c += 1
-        return c
+        nums.sort()
+        low, high = 0, len(nums) - 1
+        
+        while low <= high:
+            mid = low + (high - low)//2
+            x = len(nums) - mid;
             
+            if nums[mid] >= x:
+                if mid == 0 or nums[mid-1] < x:
+                    return x
+                else:
+                    high = mid - 1
+            else:
+                low = mid + 1
+        
+        return -1
