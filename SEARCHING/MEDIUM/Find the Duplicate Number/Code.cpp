@@ -5,17 +5,24 @@ PROBLEM LINK:- https://leetcode.com/problems/find-the-duplicate-number/
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        for(int i = 0; i < nums.size(); i++)
-        {
-            int x = abs(nums[i]) - 1;
+        int low = 0, high = nums.size() - 1, c;
+        
+        while(low <= high){
+            int mid = low + (high - low)/2;
+            c = 0;
             
-            if(nums[x] < 0)
-                return abs(nums[i]);
+            for(int x: nums)
+            {
+                if(x <= mid)
+                    c++;
+            }
             
+            if(c <= mid)
+                low = mid + 1;
             else
-                nums[x] = -nums[x];
+                high = mid - 1;
         }
         
-        return 0;
+        return low;
     }
 };
