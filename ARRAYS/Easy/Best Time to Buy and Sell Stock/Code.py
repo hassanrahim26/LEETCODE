@@ -2,9 +2,13 @@
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        profit, m = 0, float('inf')
+        l, ans, p = 10000, 0, 0
+
         for i in prices:
-            m = min(m, i)
-            x = i - m
-            profit = max(profit, x)
-        return profit
+            if i < l:
+                l = i
+            p = i - l 
+            if ans < p:
+                ans = p 
+                
+        return ans
