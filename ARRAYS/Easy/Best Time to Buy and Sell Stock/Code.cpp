@@ -5,13 +5,17 @@ PROBLEM LINK:- https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int profit = 0, x = INT_MAX;
-        for(int i = 0; i < prices.size(); i++)
-        {
-            x = min(x, prices[i]);
-            if(x < prices[i])
-                profit = max(profit, (prices[i] - x));
+        int l = INT_MAX, ans = 0, p = 0;
+        
+        for(int x: prices){
+            if(x < l)
+                l = x;
+            p = x - l;
+            
+            if(ans < p)
+                ans = p;
         }
-        return profit;
+        
+        return ans;
     }
 };
