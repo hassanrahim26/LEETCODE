@@ -39,4 +39,5 @@ class Solution:
                 high -= 1
             else:
                 low += 1
+        return []
 ```
