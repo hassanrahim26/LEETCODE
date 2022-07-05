@@ -5,13 +5,16 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        unordered_set<int> numSet(nums.begin(), nums.end());
+        unordered_set<int> s(nums.begin(), nums.end());
         int ans = 0, count;
         
-        for(auto n: numSet){
-            if(!numSet.count(n-1)){
+        for(auto n: s)
+        {
+            if(!s.count(n-1))
+            {
                 count = 0;
-                while(numSet.count(n)){
+                while(s.count(n))
+                {
                     count++;
                     n += 1;
                 }
@@ -28,15 +31,14 @@ public:
 ```py
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
+        s = set(nums)
         ans = 0
-        nums = set(nums)
         
-        for n in nums:
-            if n - 1 not in nums:
-                left, right = n, n
-                while right + 1 in nums:
-                    right += 1
-                ans = max(ans, right - left + 1)
-        
+        for x in s:
+            if x-1 not in s:
+                y = x + 1
+                while y in s:
+                    y += 1
+                ans = max(ans, y - x)
         return ans
 ```
