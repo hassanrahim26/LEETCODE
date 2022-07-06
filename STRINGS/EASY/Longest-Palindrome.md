@@ -26,9 +26,9 @@ class Solution:
         for c in s:
             mp[ord(c)] += 1
         
-        odd = 0
+        x = 0
         for i in mp:
-            odd += i & 1
+            x += i & 1
         
-        return len(s) - odd + (odd > 0)
+        return len(s) - x + (x > 0)
 ```
