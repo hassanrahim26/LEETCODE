@@ -23,3 +23,27 @@ public:
     }
 };
 ```
+
+* **PYTHON**
+```py
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        if num1 == '0' or num2 == '0':
+            return '0'
+        
+        def f1(num):
+            ans = 0
+            for i in num:
+                ans = ans*10 +(ord(i) - ord('0'))
+            return ans
+
+        def f2(n):
+            ans = ''
+            while n:
+                a = n % 10
+                n = n // 10
+                ans = chr(ord('0') + a) + ans
+            return ans
+        
+        return f2(f1(num1)*f1(num2))
+```
