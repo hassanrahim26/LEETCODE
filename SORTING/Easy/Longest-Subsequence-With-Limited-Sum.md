@@ -51,3 +51,28 @@
   };
   ```
  
+<hr>
+
+* **PYTHON**
+
+```py
+class Solution:
+    def answerQueries(self, nums: List[int], q: List[int]) -> List[int]:
+        n, m, s = len(nums), len(q), 0
+        pre_sum = []
+        nums.sort()
+        
+        for x in nums:
+            s += x
+            pre_sum.append(s)
+        
+        ans = [0]*m
+        for i in range(m):
+            for j in range(n):
+                if(pre_sum[j] <= q[i]):
+                    ans[i] = j+1
+                else:
+                    break
+        
+        return ans
+```
