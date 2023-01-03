@@ -55,24 +55,42 @@
 
 * **PYTHON**
 
-```py
-class Solution:
-    def answerQueries(self, nums: List[int], q: List[int]) -> List[int]:
-        n, m, s = len(nums), len(q), 0
-        pre_sum = []
-        nums.sort()
+ * 1
+ ```py
+ class Solution:
+     def answerQueries(self, nums: List[int], q: List[int]) -> List[int]:
+         n, m, s = len(nums), len(q), 0
+         pre_sum = []
+         nums.sort()
         
-        for x in nums:
-            s += x
-            pre_sum.append(s)
+         for x in nums:
+             s += x
+             pre_sum.append(s)
         
-        ans = [0]*m
-        for i in range(m):
-            for j in range(n):
-                if(pre_sum[j] <= q[i]):
-                    ans[i] = j+1
-                else:
-                    break
+         ans = [0]*m
+         for i in range(m):
+             for j in range(n):
+                 if(pre_sum[j] <= q[i]):
+                     ans[i] = j+1
+                 else:
+                     break
         
-        return ans
-```
+         return ans
+ ```
+
+ * 2
+ ```py
+ class Solution:
+     def answerQueries(self, nums: List[int], q: List[int]) -> List[int]:
+         ans = []
+         nums.sort()
+        
+         for i in range(1, len(nums)):
+             nums[i] += nums[i-1]
+        
+         for i in range(len(q)):
+             id = bisect.bisect_right(nums, q[i])
+             ans.append(id)
+        
+         return ans
+ ```
